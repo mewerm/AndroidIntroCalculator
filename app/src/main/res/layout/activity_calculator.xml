@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.CalculatorActivity">
 
     <ImageView
 
@@ -23,7 +23,7 @@
         android:layout_marginEnd="@dimen/standard_margin"
         android:textColor="@color/white"
         android:textSize="@dimen/button_text_size"
-        tools:text="Equals"
+        tools:text="33334"
 
         />
 
@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/standard_margin"
-        android:layout_marginBottom="@dimen/margin_for_grid"
         android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginBottom="@dimen/margin_for_grid"
         android:columnCount="4"
         android:useDefaultMargins="true">
 
@@ -53,19 +53,13 @@
             android:id="@+id/key_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
             android:backgroundTint="@color/my_green"
             android:text="@string/key_c"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text_size" />
 
-        <Button
-            android:id="@+id/key_ce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/my_green"
-            android:text="@string/key_ce"
-            android:textColor="@color/white"
-            android:textSize="@dimen/button_text_size" />
 
         <Button
             android:id="@+id/key_percent"
