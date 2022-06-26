@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background"
+        android:scaleType="center"
+        android:src="@drawable/background" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_text_size"
+        tools:text="Equals"
+
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/margin_top_view"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginBottom="@dimen/standard_margin"
+        android:background="@color/my_white" />
+
+
+    <GridLayout
+        android:layout_width="@dimen/width_for_grid"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginBottom="@dimen/margin_for_grid"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:columnCount="4"
+        android:useDefaultMargins="true">
+
+
+        <Button
+            android:id="@+id/key_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_c"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_ce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_ce"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_percent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_division"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_blue"
+            android:text="@string/key_division"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_7"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_8"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_9"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_multiply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_blue"
+            android:text="@string/key_multiply"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_5"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_6"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_subtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_blue"
+            android:text="@string/key_subtract"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_3"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_addition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_blue"
+            android:text="@string/key_addition"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+
+        <Button
+            android:id="@+id/key_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_green"
+            android:text="@string/key_dot"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/key_equal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_blue"
+            android:text="@string/key_equal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size" />
+
+
+    </GridLayout>
+
+</FrameLayout>
