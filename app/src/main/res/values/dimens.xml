@@ -6,4 +6,7 @@
     <dimen name="margin_for_grid">40dp</dimen>
     <dimen name="margin_top_view">200dp</dimen>
     <dimen name="window_result">110dp</dimen>
+    <dimen name="landscape_dp_view">100dp</dimen>
+    <dimen name="landscape_bottom_view">21dp</dimen>
+    <dimen name="equals_window_dp">270dp</dimen>
 </resources>
