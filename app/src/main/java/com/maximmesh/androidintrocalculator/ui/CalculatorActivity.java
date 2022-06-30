@@ -1,9 +1,14 @@
 package com.maximmesh.androidintrocalculator.ui;
 
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.maximmesh.androidintrocalculator.R;
@@ -13,21 +18,26 @@ import com.maximmesh.androidintrocalculator.model.Operator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CalculatorActivity extends AppCompatActivity implements CalculatorView {
+public class CalculatorActivity extends AppCompatActivity implements CalculatorView { //реализуем интерфейс
 
-    private TextView resultTxt;
 
-    private CalculatorPresenter presenter;
+    private TextView resultTxt; //Это TextView, куда мы запишем результат.
+
+    private CalculatorPresenter presenter; //ссылка на Presenter
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
+        resultTxt = findViewById(R.id.result_text_view); //Это TextView, таким образом нашли.
 
-        resultTxt = findViewById(R.id.result);
+        if (savedInstanceState != null) {
+            presenter = (CalculatorPresenter) savedInstanceState.getParcelable("presenter"); //cюда положили ключ
+        }
 
-        presenter = new CalculatorPresenter(this, new CalculatorImpl());
+            presenter = new CalculatorPresenter(this, new CalculatorImpl());
 
         Map<Integer, Integer> digits = new HashMap<>();
         digits.put(R.id.key_1, 1);
@@ -47,7 +57,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
 
                 try {
                     presenter.oneDigitPressed(digits.get(view.getId()));
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
 
@@ -70,6 +80,8 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.key_division, Operator.DIV);
         operators.put(R.id.key_multiply, Operator.MULT);
         operators.put(R.id.key_subtract, Operator.SUB);
+        operators.put(R.id.key_c, Operator.CLEAR);
+        operators.put(R.id.key_percent, Operator.PERCENT);
 
         View.OnClickListener operatorsClickListener = new View.OnClickListener() {
             @Override
@@ -84,6 +96,8 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         findViewById(R.id.key_division).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_multiply).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_subtract).setOnClickListener(operatorsClickListener);
+        findViewById(R.id.key_c).setOnClickListener(operatorsClickListener);
+        findViewById(R.id.key_percent).setOnClickListener(operatorsClickListener);
 
         findViewById(R.id.key_dot).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,12 +106,26 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
             }
         });
 
+        findViewById(R.id.key_equal).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.equalPressed();
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {   //здесь взяли
+        outState.putParcelable("presenter", presenter);  //putInt ("ключ" , значение);
+        super.onSaveInstanceState(outState);
+
+        Log.d("TestCalc", "onSaveInstanceState");
     }
 
     @Override
     public void showResult(String result) {
 
-        resultTxt.setText(result);
+        resultTxt.setText(result); //Сюда запишется результат.
 
     }
 }

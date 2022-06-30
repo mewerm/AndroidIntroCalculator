@@ -15,7 +15,7 @@
         android:src="@drawable/background" />
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/result_text_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/window_result"
         android:layout_gravity="center"
