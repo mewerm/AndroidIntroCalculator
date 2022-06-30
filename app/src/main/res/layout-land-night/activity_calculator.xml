@@ -64,7 +64,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_division"
-            style="?calcActionButton"
+            style="@style/CalculButtonBlue"
             android:text="@string/key_division" />
 
         <com.google.android.material.button.MaterialButton
@@ -84,7 +84,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_multiply"
-            style="?calcActionButton"
+            style="@style/CalculButtonBlue"
             android:text="@string/key_multiply" />
 
         <com.google.android.material.button.MaterialButton
@@ -104,7 +104,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_subtract"
-            style="?calcActionButton"
+            style="@style/CalculButtonBlue"
             android:text="@string/key_subtract" />
 
         <com.google.android.material.button.MaterialButton
@@ -124,7 +124,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_addition"
-            style="?calcActionButton"
+            style="@style/CalculButtonBlue"
             android:text="@string/key_addition" />
 
 
@@ -142,7 +142,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_equal"
-            style="?calcActionButton"
+            style="@style/CalculButtonBlue"
             android:text="@string/key_equal" />
 
 

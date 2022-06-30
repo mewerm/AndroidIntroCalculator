@@ -97,6 +97,7 @@ public class CalculatorPresenter implements Parcelable {
         argOne = calculator.perform(argOne, argTwo, selectedOperator);
         showFormatted(argOne);
 
+
     }
 
     @Override
@@ -109,5 +110,7 @@ public class CalculatorPresenter implements Parcelable {
         dest.writeDouble(argOne);
         dest.writeDouble(argTwo);
     }
+
+
 }
 

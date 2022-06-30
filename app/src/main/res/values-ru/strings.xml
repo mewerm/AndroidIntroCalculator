@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidIntroCalculator</string>
+    <string name="app_name">Калькулятор</string>
     <string name="background">background</string>
     <string name="key_c">C</string>
     <string name="key_ce">CE</string>

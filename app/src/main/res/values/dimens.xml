@@ -9,4 +9,9 @@
     <dimen name="landscape_dp_view">100dp</dimen>
     <dimen name="landscape_bottom_view">21dp</dimen>
     <dimen name="equals_window_dp">270dp</dimen>
+    <dimen name="txt_view_land_dp_w_h">200dp</dimen>
+    <dimen name="margin_top_land_view">50dp</dimen>
+    <dimen name="margin_start_land_view">255dp</dimen>
+    <dimen name="margin_end_land_view">150dp</dimen>
+    <dimen name="layout_height_land_view">341dp</dimen>
 </resources>
