@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/result"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/window_result"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/standard_margin"
         android:layout_marginEnd="@dimen/standard_margin"
@@ -29,7 +29,7 @@
 
     <View
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/standard_margin"
         android:layout_marginTop="@dimen/margin_top_view"
@@ -39,7 +39,7 @@
 
 
     <GridLayout
-        android:layout_width="@dimen/width_for_grid"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/standard_margin"
