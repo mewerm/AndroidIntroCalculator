@@ -5,7 +5,7 @@
     <dimen name="width_for_grid">395dp</dimen>
     <dimen name="margin_for_grid">40dp</dimen>
     <dimen name="margin_top_view">200dp</dimen>
-    <dimen name="window_result">110dp</dimen>
+    <dimen name="window_result">50dp</dimen>
     <dimen name="landscape_dp_view">100dp</dimen>
     <dimen name="landscape_bottom_view">21dp</dimen>
     <dimen name="equals_window_dp">270dp</dimen>
@@ -14,4 +14,5 @@
     <dimen name="margin_start_land_view">255dp</dimen>
     <dimen name="margin_end_land_view">150dp</dimen>
     <dimen name="layout_height_land_view">341dp</dimen>
+    <dimen name="text_view_land_width">297dp</dimen>
 </resources>

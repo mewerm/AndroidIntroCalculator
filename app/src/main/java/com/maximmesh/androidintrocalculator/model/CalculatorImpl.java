@@ -1,6 +1,6 @@
 package com.maximmesh.androidintrocalculator.model;
 
-public class CalculatorImpl implements Calculator {
+public class CalculatorImpl implements Calculator{
     @Override
     public double perform(double arg1, double arg2, Operator operator) {
         switch (operator) {

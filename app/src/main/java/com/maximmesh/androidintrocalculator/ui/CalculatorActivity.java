@@ -1,14 +1,12 @@
 package com.maximmesh.androidintrocalculator.ui;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.maximmesh.androidintrocalculator.R;
@@ -20,24 +18,33 @@ import java.util.Map;
 
 public class CalculatorActivity extends AppCompatActivity implements CalculatorView { //реализуем интерфейс
 
-
+    private static final String KEY_PARCE = "key_parcelable";
     private TextView resultTxt; //Это TextView, куда мы запишем результат.
 
     private CalculatorPresenter presenter; //ссылка на Presenter
 
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        presenter = savedInstanceState.getParcelable(KEY_PARCE);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences preferences = getSharedPreferences("themes.xml", MODE_PRIVATE);
+
+        int theme = preferences.getInt("theme", R.style.Theme_AndroidIntroCalculator);
+
+        setTheme(theme);
+
         setContentView(R.layout.activity_calculator);
 
         resultTxt = findViewById(R.id.result_text_view); //Это TextView, таким образом нашли.
 
-        if (savedInstanceState != null) {
-            presenter = (CalculatorPresenter) savedInstanceState.getParcelable("presenter"); //cюда положили ключ
-        }
+        presenter = new CalculatorPresenter(this, new CalculatorImpl());
 
-            presenter = new CalculatorPresenter(this, new CalculatorImpl());
 
         Map<Integer, Integer> digits = new HashMap<>();
         digits.put(R.id.key_1, 1);
@@ -60,7 +67,6 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
-
             }
         };
 
@@ -112,14 +118,37 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 presenter.equalPressed();
             }
         });
-    }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {   //здесь взяли
-        outState.putParcelable("presenter", presenter);  //putInt ("ключ" , значение);
-        super.onSaveInstanceState(outState);
 
-        Log.d("TestCalc", "onSaveInstanceState");
+        Button changeThemeOne = findViewById(R.id.theme_button1);
+        Button changeThemeTwo = findViewById(R.id.theme_button2);
+
+        if (changeThemeOne != null) {
+            changeThemeOne.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    preferences.edit()
+                            .putInt("theme", R.style.Theme_AndroidIntroCalculator)
+                            .commit();
+
+                    recreate();
+                }
+            });
+
+            if (changeThemeTwo != null) {
+                changeThemeTwo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        preferences.edit()
+                                .putInt("theme", R.style.Theme_AndroidIntroCalculator_ChangeTheme)
+                                .commit();
+
+                        recreate();
+                    }
+
+                });
+            }
+        }
     }
 
     @Override
@@ -127,5 +156,11 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
 
         resultTxt.setText(result); //Сюда запишется результат.
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(KEY_PARCE, presenter);
+        super.onSaveInstanceState(outState);
     }
 }

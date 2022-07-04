@@ -6,5 +6,6 @@ public enum Operator { //тут создали набор операторов
     MULT,
     DIV,
     CLEAR,
-    PERCENT
+    PERCENT,
+    DOT
 }

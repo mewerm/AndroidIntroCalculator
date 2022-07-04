@@ -1,8 +1,8 @@
 package com.maximmesh.androidintrocalculator.ui;
 
-import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.service.controls.DeviceTypes;
 
 import com.maximmesh.androidintrocalculator.model.Calculator;
 import com.maximmesh.androidintrocalculator.model.Operator;
@@ -14,14 +14,12 @@ public class CalculatorPresenter implements Parcelable {
 
 
     private final DecimalFormat formatter = new DecimalFormat("#.##");
-
     private CalculatorView view;
     private Calculator calculator;
+    private Operator selectedOperator;
     private double argOne;
     private double argTwo;
 
-
-    private Operator selectedOperator;
 
     public CalculatorPresenter(CalculatorView view, Calculator calculator) {
         this.view = view;
@@ -32,6 +30,8 @@ public class CalculatorPresenter implements Parcelable {
     protected CalculatorPresenter(Parcel in) {
         argOne = in.readDouble();
         argTwo = in.readDouble();
+        selectedOperator = Operator.values()[in.readInt()];
+
     }
 
     public static final Creator<CalculatorPresenter> CREATOR = new Creator<CalculatorPresenter>() {
@@ -59,8 +59,6 @@ public class CalculatorPresenter implements Parcelable {
 
             showFormatted(argTwo);
         }
-
-
     }
 
     public void oneOperatorPressed(Operator operator) {
@@ -68,21 +66,24 @@ public class CalculatorPresenter implements Parcelable {
         if (selectedOperator != null) {
 
             argOne = calculator.perform(argOne, argTwo, selectedOperator);
-
             showFormatted(argOne);
 
+        } else {
+            argTwo = 0.0;
 
-        }
-        argTwo = 0.0;
-
-
-        selectedOperator = operator;
+            selectedOperator = operator;
         }
 
+        if (selectedOperator == Operator.CLEAR) {
+
+            argOne = calculator.perform(0, 0, Operator.CLEAR);
+            showFormatted(argOne);
+            selectedOperator = null;
+        }
+    }
 
     public void oneDotPressed() {
-
-
+        //к сожалению как реализовать точку пока не дошел умом.
     }
 
 
@@ -93,11 +94,12 @@ public class CalculatorPresenter implements Parcelable {
     }
 
     public void equalPressed() {
+        if (selectedOperator != null) {
+            argOne = calculator.perform(argOne, argTwo, selectedOperator);
 
-        argOne = calculator.perform(argOne, argTwo, selectedOperator);
-        showFormatted(argOne);
-
-
+            showFormatted(argOne);
+        }
+        selectedOperator = null;
     }
 
     @Override
@@ -109,8 +111,7 @@ public class CalculatorPresenter implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeDouble(argOne);
         dest.writeDouble(argTwo);
+        dest.writeValue(selectedOperator);
     }
-
-
 }
 

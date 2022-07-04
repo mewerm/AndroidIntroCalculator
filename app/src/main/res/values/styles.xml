@@ -7,10 +7,39 @@
         <item name="android:layout_width">wrap_content</item>"
         <item name="android:textColor">@color/white</item>
         <item name="android:backgroundTint">@color/my_green</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="rippleColor">@color/my_white</item>
     </style>
 
     <style name="CalculButtonBlue" parent="CalculButtonGreen">
         <item name="android:backgroundTint">@color/my_blue</item>
+    </style>
+
+    <style name="ChageThemeButton" parent="CalculButtonGreen">
+        <item name="android:layout_height">36dp</item>"
+        <item name="android:layout_width">26dp</item>"
+        <item name="cornerRadius">300dp</item>
+        <item name="android:backgroundTint">@color/my_blue</item>
+    </style>
+
+    <style name="ChageThemeButton2" parent="ChageThemeButton">
+
+        <item name="android:backgroundTint">@color/black</item>
+    </style>
+
+
+    <style name="ChangeCalculButtonGreen">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:layout_height">wrap_content</item>"
+        <item name="android:layout_width">wrap_content</item>"
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="rippleColor">@color/my_white</item>
+        <item name="backgroundTint">@color/black</item>
+    </style>
+
+    <style name="ChangeCalculButtonBlue" parent="ChangeCalculButtonGreen">
+        <item name="android:backgroundTint">@color/my_pink</item>
     </style>
 
 
