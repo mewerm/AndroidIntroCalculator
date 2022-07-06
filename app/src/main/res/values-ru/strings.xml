@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidIntroCalculator</string>
+    <string name="app_name">Калькулятор</string>
     <string name="background">background</string>
     <string name="key_c">C</string>
     <string name="key_ce">CE</string>
@@ -20,8 +20,8 @@
     <string name="key_0">0</string>
     <string name="key_dot">.</string>
     <string name="key_equal">=</string>
-    <string name="theme_1">First Theme</string>
-    <string name="theme_2">Second Theme</string>
-    <string name="select_theme">Select Theme</string>
-    <string name="how_to_change_theme">How to change theme</string>
+    <string name="theme_1">Первая Тема</string>
+    <string name="theme_2">Вторая Тема</string>
+    <string name="select_theme">Выбрать тему</string>
+    <string name="how_to_change_theme">Как поменять тему</string>
 </resources>

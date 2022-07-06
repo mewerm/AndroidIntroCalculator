@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidIntroCalculator">
         <activity
+            android:name=".ui.SelectThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.CalculatorActivity"
             android:exported="true">
             <intent-filter>
@@ -17,6 +20,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+
+                <data
+                    android:scheme="calc"
+                    android:host="launch" />
+            </intent-filter>
+
         </activity>
     </application>
 
