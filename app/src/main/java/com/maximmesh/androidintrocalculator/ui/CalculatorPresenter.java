@@ -2,7 +2,6 @@ package com.maximmesh.androidintrocalculator.ui;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.service.controls.DeviceTypes;
 
 import com.maximmesh.androidintrocalculator.model.Calculator;
 import com.maximmesh.androidintrocalculator.model.Operator;
@@ -12,7 +11,6 @@ import java.text.DecimalFormat;
 
 public class CalculatorPresenter implements Parcelable {
 
-
     private final DecimalFormat formatter = new DecimalFormat("#.##");
     private CalculatorView view;
     private Calculator calculator;
@@ -20,31 +18,11 @@ public class CalculatorPresenter implements Parcelable {
     private double argOne;
     private double argTwo;
 
-
     public CalculatorPresenter(CalculatorView view, Calculator calculator) {
         this.view = view;
         this.calculator = calculator;
     }
 
-
-    protected CalculatorPresenter(Parcel in) {
-        argOne = in.readDouble();
-        argTwo = in.readDouble();
-        selectedOperator = Operator.values()[in.readInt()];
-
-    }
-
-    public static final Creator<CalculatorPresenter> CREATOR = new Creator<CalculatorPresenter>() {
-        @Override
-        public CalculatorPresenter createFromParcel(Parcel in) {
-            return new CalculatorPresenter(in);
-        }
-
-        @Override
-        public CalculatorPresenter[] newArray(int size) {
-            return new CalculatorPresenter[size];
-        }
-    };
 
     public void oneDigitPressed(int digit) {
 
@@ -102,6 +80,24 @@ public class CalculatorPresenter implements Parcelable {
         selectedOperator = null;
     }
 
+        public static final Creator<CalculatorPresenter> CREATOR = new Creator<CalculatorPresenter>() {
+        @Override
+        public CalculatorPresenter createFromParcel(Parcel in) {
+            return new CalculatorPresenter(in);
+        }
+
+        @Override
+        public CalculatorPresenter[] newArray(int size) {
+            return new CalculatorPresenter[size];
+        }
+    };
+
+
+    protected CalculatorPresenter(Parcel in) {
+        argOne = in.readDouble();
+        argTwo = in.readDouble();
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -111,7 +107,7 @@ public class CalculatorPresenter implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeDouble(argOne);
         dest.writeDouble(argTwo);
-        dest.writeValue(selectedOperator);
     }
 }
+
 

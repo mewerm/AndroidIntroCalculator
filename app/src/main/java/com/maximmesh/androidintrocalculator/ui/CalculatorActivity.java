@@ -1,47 +1,59 @@
 package com.maximmesh.androidintrocalculator.ui;
 
-import android.content.SharedPreferences;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.maximmesh.androidintrocalculator.R;
 import com.maximmesh.androidintrocalculator.model.CalculatorImpl;
 import com.maximmesh.androidintrocalculator.model.Operator;
+import com.maximmesh.androidintrocalculator.model.Theme;
+import com.maximmesh.androidintrocalculator.model.ThemeRepository;
+import com.maximmesh.androidintrocalculator.model.ThemeRepositoryImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CalculatorActivity extends AppCompatActivity implements CalculatorView { //реализуем интерфейс
 
-    private static final String KEY_PARCE = "key_parcelable";
+    private static final String KEY_PARCE = "KEY_PARCE";
+
     private TextView resultTxt; //Это TextView, куда мы запишем результат.
 
     private CalculatorPresenter presenter; //ссылка на Presenter
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        presenter = savedInstanceState.getParcelable(KEY_PARCE);
-        super.onRestoreInstanceState(savedInstanceState);
-    }
+    private ThemeRepository themeRepository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences preferences = getSharedPreferences("themes.xml", MODE_PRIVATE);
+        themeRepository = ThemeRepositoryImpl.getInstance(this); //получаем ссылку на репозиторий
 
-        int theme = preferences.getInt("theme", R.style.Theme_AndroidIntroCalculator);
-
-        setTheme(theme);
+        setTheme(themeRepository.getSavedTheme().getThemeRes());
 
         setContentView(R.layout.activity_calculator);
 
         resultTxt = findViewById(R.id.result_text_view); //Это TextView, таким образом нашли.
+
+        if(getIntent().hasExtra("message")){
+
+            resultTxt.setText(getIntent().getStringExtra("message"));
+
+        }
 
         presenter = new CalculatorPresenter(this, new CalculatorImpl());
 
@@ -119,36 +131,37 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
             }
         });
 
+        ActivityResultLauncher<Intent> themeLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
 
-        Button changeThemeOne = findViewById(R.id.theme_button1);
-        Button changeThemeTwo = findViewById(R.id.theme_button2);
+                if(result.getResultCode() == Activity.RESULT_OK){
 
-        if (changeThemeOne != null) {
-            changeThemeOne.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    preferences.edit()
-                            .putInt("theme", R.style.Theme_AndroidIntroCalculator)
-                            .commit();
+                    Intent intent = result.getData();
+
+                    Theme selectedTheme = (Theme) intent.getSerializableExtra(SelectThemeActivity.EXTRA_THEME);
+
+                    themeRepository.saveTheme(selectedTheme);
 
                     recreate();
+
                 }
-            });
 
-            if (changeThemeTwo != null) {
-                changeThemeTwo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        preferences.edit()
-                                .putInt("theme", R.style.Theme_AndroidIntroCalculator_ChangeTheme)
-                                .commit();
-
-                        recreate();
-                    }
-
-                });
             }
-        }
+        });
+
+        findViewById(R.id.theme).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CalculatorActivity.this, SelectThemeActivity.class);
+                intent.putExtra(SelectThemeActivity.EXTRA_THEME, themeRepository.getSavedTheme()); //таким образом передаем данные в другое активити
+
+                themeLauncher.launch(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -158,9 +171,21 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
 
     }
 
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        presenter= savedInstanceState.getParcelable(KEY_PARCE);
+        Log.d("onSave", "onRestoreInstanceState");
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(KEY_PARCE, presenter);
+        outState.putParcelable(KEY_PARCE, presenter);
         super.onSaveInstanceState(outState);
+        Log.d("onSave", "onSaveInstanceState");
+
     }
+
 }

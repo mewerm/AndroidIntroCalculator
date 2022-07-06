@@ -38,19 +38,12 @@
         android:background="@color/my_white" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/theme_button1"
-        style="@style/ChageThemeButton"
-        android:layout_marginStart="610dp"
-        android:layout_marginTop="57dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/theme_button2"
-        style="@style/ChageThemeButton2"
-        android:layout_marginStart="650dp"
-        android:layout_marginTop="57dp" />
-
-
-
+        android:id="@+id/theme"
+        android:text="@string/select_theme"
+        style="@style/ChageButton"
+        android:layout_marginStart="580dp"
+        android:layout_marginTop="100dp" />
 
     <GridLayout
         android:layout_width="match_parent"

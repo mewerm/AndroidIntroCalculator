@@ -15,4 +15,5 @@
     <dimen name="margin_end_land_view">150dp</dimen>
     <dimen name="layout_height_land_view">341dp</dimen>
     <dimen name="text_view_land_width">297dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
 </resources>

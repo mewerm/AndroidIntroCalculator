@@ -20,4 +20,8 @@
     <string name="key_0">0</string>
     <string name="key_dot">.</string>
     <string name="key_equal">=</string>
+    <string name="theme_1">Первая Тема</string>
+    <string name="theme_2">Вторая Тема</string>
+    <string name="select_theme">Выбрать тему</string>
+    <string name="how_to_change_theme">Как поменять тему</string>
 </resources>

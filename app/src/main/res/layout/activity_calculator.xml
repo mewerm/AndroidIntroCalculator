@@ -39,17 +39,11 @@
 
     <com.google.android.material.button.MaterialButton
 
-        android:id="@+id/theme_button1"
-        style="@style/ChageThemeButton"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="340dp" />
-
-    <com.google.android.material.button.MaterialButton
-
-        android:id="@+id/theme_button2"
-        style="@style/ChageThemeButton2"
-        android:layout_marginStart="348dp"
-        android:layout_marginTop="340dp" />
+        android:id="@+id/theme"
+        android:text="@string/select_theme"
+        style="@style/ChageButton"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="284dp" />
 
 
     <GridLayout
