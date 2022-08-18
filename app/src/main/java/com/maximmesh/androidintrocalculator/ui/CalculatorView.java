@@ -2,5 +2,5 @@ package com.maximmesh.androidintrocalculator.ui;
 
 public interface CalculatorView {
 
-    void showResult(String result);
+    void showResult(String result); //говорим View: "Покажи результат" - отформатированную строку
 }

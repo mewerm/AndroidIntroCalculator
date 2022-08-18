@@ -1,8 +1,10 @@
 package com.maximmesh.androidintrocalculator.model;
 
-public enum Operator {
+public enum Operator { //тут создали набор операторов
     ADD,
     SUB,
     MULT,
-    DIV
+    DIV,
+    CLEAR,
+    PERCENT
 }
