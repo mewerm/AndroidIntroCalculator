@@ -16,28 +16,34 @@
 
     <TextView
         android:id="@+id/result_text_view"
-        android:layout_width="@dimen/txt_view_land_dp_w_h"
-        android:layout_height="@dimen/txt_view_land_dp_w_h"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="@dimen/margin_top_land_view"
-        android:layout_marginStart="@dimen/margin_start_land_view"
-        android:layout_marginEnd="@dimen/margin_end_land_view"
+        android:layout_width="297dp"
+        android:layout_height="@dimen/window_result"
+        android:layout_gravity="right|center"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginBottom="110dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rectangle"
+        android:padding="@dimen/standard_margin"
         android:textColor="@color/white"
         android:textSize="@dimen/button_text_size"
-        tools:text="33334"
-
-        tools:ignore="RtlHardcoded" />
-
+        tools:text="33334" />
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_height_land_view"
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/standard_margin"
         android:layout_marginTop="@dimen/margin_top_view"
-        android:layout_marginEnd="@dimen/landscape_dp_view"
+        android:layout_marginEnd="@dimen/standard_margin"
         android:layout_marginBottom="@dimen/landscape_bottom_view"
         android:background="@color/my_white" />
 
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/theme"
+        android:text="@string/select_theme"
+        style="@style/ChageButton"
+        android:layout_marginStart="580dp"
+        android:layout_marginTop="100dp" />
 
     <GridLayout
         android:layout_width="match_parent"
@@ -52,97 +58,97 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_c"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:layout_columnSpan="2"
             android:layout_gravity="fill_horizontal"
             android:text="@string/key_c" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_percent"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_percent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_division"
-            style="@style/CalculButtonBlue"
+            style="?attr/CalculaterButtonOperand"
             android:text="@string/key_division" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_7"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_7" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_8"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_8" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_9"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_9" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_multiply"
-            style="@style/CalculButtonBlue"
+            style="?attr/CalculaterButtonOperand"
             android:text="@string/key_multiply" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_4"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_4" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_5"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_5" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_6"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_6" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_subtract"
-            style="@style/CalculButtonBlue"
+            style="?attr/CalculaterButtonOperand"
             android:text="@string/key_subtract" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_3"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_3" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_2"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_1"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_addition"
-            style="@style/CalculButtonBlue"
+            style="?attr/CalculaterButtonOperand"
             android:text="@string/key_addition" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_0"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:layout_columnSpan="2"
             android:layout_gravity="fill_horizontal"
             android:text="@string/key_0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_dot"
-            style="@style/CalculButtonGreen"
+            style="?attr/CalculaterButtonOperation"
             android:text="@string/key_dot" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/key_equal"
-            style="@style/CalculButtonBlue"
+            style="?attr/CalculaterButtonOperand"
             android:text="@string/key_equal" />
 
 

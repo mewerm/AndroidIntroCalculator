@@ -1,43 +1,62 @@
 package com.maximmesh.androidintrocalculator.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.maximmesh.androidintrocalculator.R;
 import com.maximmesh.androidintrocalculator.model.CalculatorImpl;
 import com.maximmesh.androidintrocalculator.model.Operator;
+import com.maximmesh.androidintrocalculator.model.Theme;
+import com.maximmesh.androidintrocalculator.model.ThemeRepository;
+import com.maximmesh.androidintrocalculator.model.ThemeRepositoryImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CalculatorActivity extends AppCompatActivity implements CalculatorView { //реализуем интерфейс
 
+    private static final String KEY_PARCE = "KEY_PARCE";
 
     private TextView resultTxt; //Это TextView, куда мы запишем результат.
 
     private CalculatorPresenter presenter; //ссылка на Presenter
 
+    private ThemeRepository themeRepository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        themeRepository = ThemeRepositoryImpl.getInstance(this); //получаем ссылку на репозиторий
+
+        setTheme(themeRepository.getSavedTheme().getThemeRes());
+
         setContentView(R.layout.activity_calculator);
 
         resultTxt = findViewById(R.id.result_text_view); //Это TextView, таким образом нашли.
 
-        if (savedInstanceState != null) {
-            presenter = (CalculatorPresenter) savedInstanceState.getParcelable("presenter"); //cюда положили ключ
+        if(getIntent().hasExtra("message")){
+
+            resultTxt.setText(getIntent().getStringExtra("message"));
+
         }
 
-            presenter = new CalculatorPresenter(this, new CalculatorImpl());
+        presenter = new CalculatorPresenter(this, new CalculatorImpl());
+
 
         Map<Integer, Integer> digits = new HashMap<>();
         digits.put(R.id.key_1, 1);
@@ -60,7 +79,6 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
-
             }
         };
 
@@ -112,14 +130,38 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 presenter.equalPressed();
             }
         });
-    }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {   //здесь взяли
-        outState.putParcelable("presenter", presenter);  //putInt ("ключ" , значение);
-        super.onSaveInstanceState(outState);
+        ActivityResultLauncher<Intent> themeLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
 
-        Log.d("TestCalc", "onSaveInstanceState");
+                if(result.getResultCode() == Activity.RESULT_OK){
+
+                    Intent intent = result.getData();
+
+                    Theme selectedTheme = (Theme) intent.getSerializableExtra(SelectThemeActivity.EXTRA_THEME);
+
+                    themeRepository.saveTheme(selectedTheme);
+
+                    recreate();
+
+                }
+
+            }
+        });
+
+        findViewById(R.id.theme).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CalculatorActivity.this, SelectThemeActivity.class);
+                intent.putExtra(SelectThemeActivity.EXTRA_THEME, themeRepository.getSavedTheme()); //таким образом передаем данные в другое активити
+
+                themeLauncher.launch(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -128,4 +170,22 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         resultTxt.setText(result); //Сюда запишется результат.
 
     }
+
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        presenter= savedInstanceState.getParcelable(KEY_PARCE);
+        Log.d("onSave", "onRestoreInstanceState");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(KEY_PARCE, presenter);
+        outState.putParcelable(KEY_PARCE, presenter);
+        super.onSaveInstanceState(outState);
+        Log.d("onSave", "onSaveInstanceState");
+
+    }
+
 }

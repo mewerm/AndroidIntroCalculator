@@ -13,6 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/coustom_font</item>
-        <item name="calcActionButton">@style/CalculButtonBlue</item>
+        <item name="CalculaterButtonOperand">@style/CalculButtonBlue</item>
+        <item name="CalculaterButtonOperation">@style/CalculButtonGreen</item>
     </style>
+    <style name="Theme.AndroidIntroCalculator.ChangeTheme">
+        <item name="colorPrimaryVariant">@color/my_pink</item>
+        <item name="CalculaterButtonOperand">@style/ChangeCalculButtonBlue</item>
+        <item name="CalculaterButtonOperation">@style/ChangeCalculButtonGreen</item>
+        </style>
 </resources>
